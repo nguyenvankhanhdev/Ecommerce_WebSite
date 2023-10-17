@@ -1,0 +1,32 @@
+﻿@model List<WebsiteProject.Models.Product>
+<div id="product-list">
+
+</div>
+<button id="load-more-button" class="btn btn-primary">Hiển thị thêm sản phẩm</button>
+<script>
+    // Đoạn mã JavaScript để xử lý sự kiện khi nhấn vào nút "Hiển thị thêm sản phẩm"
+    $(document).ready(function () {
+        var page = 2; // Bắt đầu từ trang thứ 2, có thể thay đổi tùy theo cần
+
+        $("#load-more-button").click(function (event) {
+            event.preventDefault();
+            var $loadButton = $(this); // Lưu lại đối tượng nút
+            $.ajax({
+                url: "/Home/GetMoreProducts?page=" + page,
+                type: "GET",
+                success: function (data) {
+                    if (data) {
+                        $("#product-list").append(data); // Cập nhật danh sách sản phẩm
+                        page++; // Tăng số trang
+                    } else {
+                        $loadButton.hide(); // Ẩn nút nếu không còn sản phẩm
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi tải thêm sản phẩm.");
+                }
+            });
+        });
+    });
+
+</script>

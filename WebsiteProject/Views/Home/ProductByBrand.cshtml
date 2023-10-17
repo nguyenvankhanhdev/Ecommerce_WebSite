@@ -1,0 +1,140 @@
+﻿@model WebsiteProject.Models.ProductModel
+
+@{
+    ViewBag.Title = "ProductByBrand";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>ProductByBrand</h2>
+
+@section CartBrand{
+    <div class="col-sm-10 padding-right">
+        <div class="product-details">
+            <div class="containerr">
+                <div class="cartt">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="cartt-item">
+                            <a href="~/home/details?id=@item.ProductId" target="_blank">
+                                <div class="cart-product-img">
+
+                                    <img class="cart-img"
+                                         src=" data:image;base64,@item.Image" alt="">
+
+
+                                    <div class="cart-product-label">
+                                        <div class="badge-warning">Trả góp 0%</div>
+                                        <div class="badge-primary">Giảm 2.000.000đ</div>
+                                    </div>
+                                </div>
+                                <div class="item-name ml-4">@item.ProductName</div>
+                                <div class="price">
+                                    <div class="price-sale">@string.Format("{0:0,#}", item.Price) VNĐ</div>
+                                    <div class="price-strike">
+                                        <strike></strike>
+                                    </div>
+                                </div>
+                                <div class="cart-product">
+                                    <div class="rating p-t-4">
+                                        <div icon="star" class="icon is-active">
+                                            <svg height="15"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div icon="star" class="icon is-active">
+                                            <svg height="15"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div icon="star" class="icon is-active">
+                                            <svg height="15"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div icon="star" class="icon is-active">
+                                            <svg height="15"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div icon="star" class="icon is-active">
+                                            <svg height="15"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="icon">
+                                        <span><i class="bi bi-cpu"></i>@item.Chip</span>
+                                        <span><i class="bi bi-phone"></i>@item.Display</span>
+                                        <span><i class="bi bi-postage-fill"></i>@item.Ram</span>
+                                        <div class="tittle">Mua kèm Apple Pencil tặng 500k </div>
+                                    </div>
+                                </div>
+                                <div class="cart-btn">
+                                    <div class="btn-buynow">
+                                        <a href="@Url.Action("AddToCart", "Cart", new { productId = item.ProductId })">Mua ngay</a>
+                                    </div>
+                                    <div class="btn-compare">
+                                        <a href="">So sánh</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Sidebar{
+    <div class="col-sm-2">
+        <div class="left-sidebar">
+            <div class="brands_products">
+                <h2>Brands</h2>
+                <div class="brands-name">
+                    <ul class="nav nav-pills nav-stacked">
+                        @foreach (var item in Model.Brands)
+                        {
+                            <li>
+                                <a href="@Url.Action("ProductByBrand", new { brandName = item.BrandName })"> <span class="pull-right"></span>@item.BrandName</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <h2>Category</h2>
+            <div class="panel-group category-products" id="accordian">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a href="#">Điện thoại</a></h4>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a href="#">Laptop</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="price-range">
+                price-range
+                <h2>Price Range</h2>
+                <div class="well text-center">
+                    <div class="slider slider-horizontal" style="width: 182px;"><div class="slider-track"><div class="slider-selection" style="left: 37.5%; width: 37.5%;"></div><div class="slider-handle round left-round" style="left: 37.5%;"></div><div class="slider-handle round" style="left: 75%;"></div></div><div class="tooltip top" style="top: -30px; left: 69.875px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">230 : 450</div></div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" style=""></div><br>
+                    <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

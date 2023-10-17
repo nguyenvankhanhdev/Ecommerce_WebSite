@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<h2>Giỏ hàng</h2>
+<br />
+<h2>@ViewBag.Cart</h2>
+@model  WebsiteProject.Models.Cart
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Tổng tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td><img src=" data:image;base64,@item.Image" alt="@item.ProductName" style="max-width:200px" /> </td>
+                <td>
+                    <input type="number" id="quantity_@item.ProductId" value="@item.Quantity" min="1" onchange="updateTotalPrice(@item.ProductId)">
+                </td>
+                <td id="price_@item.ProductId">@item.Price.ToString("#,0 VNĐ")</td>
+                <td class="totalPrice" id="totalPrice_@item.ProductId">@item.TotalPrice.ToString("#,0 VNĐ")</td>
+
+                <td> @Html.ActionLink("Xóa", "RemoveCartItem", "Cart", new { productId = item.ProductId }, null)</td>
+            </tr>
+        }
+    </tbody>
+    <p class="text-right cartTotal">Tổng cộng: @string.Format("{0:0,#}", Model.Items.Sum(item => item.TotalPrice)) VNĐ</p>
+
+</table>
+
+<script>
+    function updateTotalPrice(productId) {
+        var newQuantity = parseInt($("#quantity_" + productId).val());
+        var price = parseFloat($("#price_" + productId).text().replace(/[^0-9.-]+/g, ""));
+        var currentTotalPrice = parseFloat($("#totalPrice_" + productId).text().replace(/[^0-9.-]+/g, ""));
+        var newTotalPrice = price * newQuantity;
+        $("#totalPrice_" + productId).text(newTotalPrice.toString()+" VNĐ");
+        updateCartTotal();
+    }
+    function updateCartTotal() {
+        var total = 0;
+        $(".totalPrice").each(function () {
+            var price = parseFloat($(this).text().replace(/[^0-9.-]+/g, ""));
+            total += price;
+        });
+        let convertTotalPrice = convertPrice(`${total}`);
+        $(".cartTotal").text("Tổng cộng: " + convertTotalPrice);
+    }
+    function convertPrice(priceString) {
+        priceString = priceString.replace(" VNĐ", "");
+        var price = parseInt(priceString, 10);
+        var formattedPrice = price.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        return formattedPrice + " VNĐ";
+    }
+</script>
+
+
+
+
+

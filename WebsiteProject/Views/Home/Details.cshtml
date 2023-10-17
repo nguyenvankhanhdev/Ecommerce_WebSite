@@ -1,0 +1,213 @@
+﻿@model WebsiteProject.Models.Product
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@section Sidebar{
+
+    <div class="col-sm-2">
+        <div class="left-sidebar">
+            <div class="brands_products">
+                <h2>Brands</h2>
+                <div class="brands-name">
+                    <ul class="nav nav-pills nav-stacked">
+                        @foreach (var item in ViewBag.Brands)
+                        {
+                            <li>
+                                <a href="@Url.Action("ProductByBrand", new { brandName = item.BrandName })"> <span class="pull-right"></span>@item.BrandName</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <h2>Category</h2>
+            <div class="panel-group category-products" id="accordian">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a href="#">Điện thoại</a></h4>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a href="#">Laptop</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="price-range">
+                price-range
+                <h2>Price Range</h2>
+                <div class="well text-center">
+                    <div class="slider slider-horizontal" style="width: 182px;"><div class="slider-track"><div class="slider-selection" style="left: 37.5%; width: 37.5%;"></div><div class="slider-handle round left-round" style="left: 37.5%;"></div><div class="slider-handle round" style="left: 75%;"></div></div><div class="tooltip top" style="top: -30px; left: 69.875px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">230 : 450</div></div><input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" style=""></div><br>
+                    <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section PhoneDetails{
+    <div class="col-sm-10 padding-right">
+        <div class="product-details">
+            <div class="col-sm-5">
+                <div class="view-product">
+                    <img src=" data:image;base64,@Model.Image" alt="">
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="product-information ">
+                    <img src="~/Assets/images/product-details/new.jpg" class="newarrival" alt="">
+                    <h2>@Model.ProductName</h2>
+                    <p class="getProductid">Mã sản phầm: @Model.ProductId</p>
+                    <img src="~/Assets/images/product-details/rating.png" alt="">
+                    </br>
+                    <span>
+                        <span>@string.Format("{0:0,#}", Model.Price) VNĐ</span>
+                        </br>
+                        <label class="cart_quantity_button">Số lượng:</label>
+                        <input type="number" value="1">
+                        <button type="button" class="btn btn-fefault cart">
+                            <a href="@Url.Action("AddToCart", "Cart", new { productId = Model.ProductId })">
+                                <i class="fa fa-shopping-cart"></i>
+                                Add to cart
+                            </a>
+                        </button>
+                    </span>
+
+                    <p><b>Danh mục: </b> @Model.Category.CategoryName</p>
+                    <p><b>Thương hiệu: </b> @Model.Brand.BrandName</p>
+                    <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt=""></a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Chi tiết sản phẩm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body col-7">
+                    <h2>Tên Sản phẩm</h2>
+                    <p>@Model.ProductName</p>
+
+                    <h2>Giá</h2>
+                    <p>@string.Format("{0:0,#}", Model.Price) VNĐ</p>
+
+                    <h2>Hình ảnh</h2>
+                    <img src="data:image;base64,@Model.Image" alt="">
+
+                    <h2>Màn hình</h2>
+                    <p>@Model.Display</p>
+
+                    <h2>Chip</h2>
+                    <p>@Model.Chip</p>
+
+                    <h2>Ram</h2>
+                    <p>@Model.Ram</p>
+
+                    <h2>Thông tin hàng hóa</h2>
+                    <ul class="a-modal">
+                        <li>Thương hiệu: @Model.Brand.BrandName</li>
+                        <li>Xuất xứ: Việt Nam / Trung Quốc</li>
+                        <li>Thời điểm ra mắt: 07/2022</li>
+                        <li>Thời gian bảo hành (tháng): 12</li>
+                        <li>Hướng dẫn bảo quản: Để nơi khô ráo</li>
+                        <li>Hướng dẫn sử dụng: Xem hướng dẫn sử dụng</li>
+                    </ul>
+
+                    <h2>Giao tiếp</h2>
+                    <div class="a-modal" id="data-12">
+                        <h3>Giao tiếp & kết nối</h3>
+                        <table class="st-table">
+                            <tr>
+                                <td>Số khe SIM</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Loại SIM</td>
+                                <td><a href="https://fptshop.com.vn/tin-tuc/danh-gia/tat-tan-tat-ve-esim-esim-la-gi-cach-su-dung-esim-81834" target="_blank">2 Nano SIM hoặc 1 eSIM, 1 Nano SIM</a></td>
+                            </tr>
+                            <tr>
+                                <td>Bluetooth</td>
+                                <td><a href="https://fptshop.com.vn/tin-tuc/danh-gia/bluetooth-la-gi-35571" target="_blank">v5.2</a></td>
+                            </tr>
+                        </table>
+                        <table class="st-table">
+                            <tr>
+                                <td>Hỗ trợ mạng</td>
+                                <td>
+                                    <ul class="st-row">
+                                        <li>4G</li>
+                                        <li><a href="https://fptshop.com.vn/dien-thoai/ho-tro-5g?sort=ban-chay-nhat" target="_blank" class="re-link">5G</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="st-table">
+                            <tr>
+                                <td>Cổng giao tiếp</td>
+                                <td>
+                                    <ul class="st-row">
+                                        <li>Cổng sạc: Type C</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="st-table">
+                            <tr>
+                                <td>Wifi</td>
+                                <td>
+                                    <ul class="st-list">
+                                        <li>802.11 a/b/g/n/ac/ax</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="st-table">
+                            <tr>
+                                <td>GPS</td>
+                                <td>
+                                    <ul class="st-list">
+                                        <li>A-GPS</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="st-table">
+                            <tr>
+                                <td>Kết nối khác</td>
+                                <td>
+                                    <ul class="st-list">
+                                        <li><a href="https://fptshop.com.vn/tin-tuc/danh-gia/nfc-la-gi-35593" target="_blank" class="re-link">NFC</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section HomeSearch{
+    <div class="col-sm-3">
+        <form class="form-inline " action="/home/index" method="get">
+            <div class="search_box pull-right">
+                <input type="text" placeholder="Tìm kiếm" value="@ViewBag.Search" name="Search" id="Search" aria-label="Search" />
+            </div>
+        </form>
+    </div>
+}

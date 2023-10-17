@@ -1,0 +1,255 @@
+﻿@model List<WebsiteProject.Models.Product>
+<link href="~/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/AssetsAdmin/plugins/fontawesome-free/css/all.min.css">
+@section index{
+    <div class="content-wrapper" style="min-height: 1203.6px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>DataTables</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">DataTables</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <button class="btn btn-primary">  <a href="/admin/products/create" class="text-white">Create</a></button>
+                                <button type="button" class="btn btn-primary btnGetProducts text-white">Get Product</button>
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example2" class="table table-bordered table-hover dataTable productTable" role="grid" aria-describedby="example2_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">ID</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NAME </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">PRICE</th>
+                                                    <th class="sorting" style="width:15%" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">IMAGE</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">DISPLAY</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CHIP</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">RAM</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">BRAND</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">CATEGORY</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Details</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Edit</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @*@foreach (var item in Model)
+                                                    {
+                                                        <tr role="row" class="odd">
+                                                            <td class="sorting_1">@item.ProductId</td>
+                                                            <td>@item.ProductName </td>
+                                                            <td>@item.Price</td>
+                                                            <td> <img src=" data:image;base64,@item.Image" width="100px" alt="@item.ProductName" /></td>
+                                                            <td>@item.Display</td>
+                                                            <td>@item.Chip</td>
+                                                            <td>@item.Ram</td>
+                                                            <td>@item.Brand.BrandName</td>
+                                                            <td>@item.Category.CategoryName</td>
+                                                            <td>
+                                                                <a href="/Admin/products/details?id=@item.ProductId">Details</a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/Admin/products/edit?id=@item.ProductId">Edit</a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="/Admin/products/delete?id=@item.ProductId">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    }*@
+                                                @{
+                                                    int PrevPageNo = ViewBag.PageNo - 1;
+                                                    if (PrevPageNo <= 0)
+                                                    {
+                                                        PrevPageNo = 1;
+                                                    }
+                                                    int nextPageNo = ViewBag.PageNo + 1;
+                                                    if (nextPageNo > ViewBag.NoOfPage)
+                                                    {
+                                                        nextPageNo = ViewBag.NoOfPage;
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row"
+                                    <div class="col-12">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="paginate_button page-item" id="example2_previous">
+                                                <a href="~/Admin/products/index?PageNo=@PrevPageNo" aria-controls="example2" data-dt-idx="0" tabindex="7" class="page-link">Prev</a>
+                                             </li>
+                                              @for (int i = 1; i <= ViewBag.NoOfPage; i++)
+                                                {
+                                                    if (i == ViewBag.PageNo)
+                                                    {
+                                                        <li class="page-item active">
+                                                            <a href="~/Admin/products/index?PageNo=@(i)" class="page-link">@(i)</a>
+                                                        </li>
+                                                     }
+                                                    else
+                                                    {
+                                                        <li class="page-item ">
+                                                            <a href="~/Admin/products/index?PageNo=@(i)" class="page-link">@(i)</a>
+                                                        </li>
+                                                    }
+                                               }
+                                               <li class="paginate_button page-item next" id="example2_next">
+                                                        <a href="~/Admin/products/index?PageNo=@nextPageNo" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                               </li>
+                                       </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <div class="modal fade" id="ViewProductModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <td>Id</td>
+                            <td><span id="ProductIdSpan"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Tên sản phẩm</td>
+                            <td><span id="ProductNameSpan"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Tên sản phẩm</td>
+                            <td id="ImageSpan"></td>
+                        </tr>
+                        <tr>
+                            <td>Giá</td>
+                            <td><span id="PriceSpan"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Màn Hình</td>
+                            <td><span id="DisplaySpan"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Chip</td>
+                            <td><span id="ChipSpan"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Ram</td>
+                            <td><span id="RamSpan"></span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+
+    function getProduct() {
+        $(".btnGetProducts").click(() => {
+
+            $.ajax({
+                type: "GET",
+                url: "/api/products",
+                success: (response) => {
+                    for (var i = 0; i < response.length; i++) {
+                        var br = response[i];
+                        console.log('wfef', br.ProductId);
+                        var str = "<tr><td> " + br.ProductId + "</td><td>" + br.ProductName + "</td><td>" + br.Price + "</td><td><img src='data:image;base64," + br.Image + "' width='100px' /></td><td>" + br.Display + "</td><td>" + br.Chip + "</td><td>" + br.Ram + "</td><td>" + br.Brand.BrandName + "</td><td>" + br.Category.CategoryName + "</td><td><button type='button' class='btn btn-info ViewProductButton' data-productid='" + br.ProductId + "' data-toggle='modal' data-target='#ViewProductModel'>View</button></td></tr>";
+                        $(".productTable").append(str);
+                    }
+
+                },
+                error: (err) => {
+                    alert(err);
+
+                }
+            });
+        });
+    }
+    function viewProduct() {
+        $(document).on("click", ".ViewProductButton", (e) => {
+            var bid = $(e.target).attr("data-productid");
+            $.ajax({
+                type: "GET",
+                url: "/api/Products?id=" + bid,
+                success: (response) => {
+                    console.log('hsdua', response);
+                    $("#ProductIdSpan").html(response[0].ProductId);
+                    $("#ProductNameSpan").html(response[0].ProductName);
+                    $("#PriceSpan").html(response[0].Price);
+                    $("#ImageSpan").html(
+                        `<img src=" data:image;base64,${response[0].Image}" width="100px" />`
+                    )
+                    $("#DisplaySpan").html(response[0].Display);
+                    $("#ChipSpan").html(response[0].Chip);
+                    $("#RamSpan").html(response[0].Ram);
+                    // Thêm các dòng khác tương tự
+                },
+                error: (err) => {
+
+                    console.log('tgtgt', err);
+                }
+            });
+        });
+
+    }
+    function _init() {
+        getProduct();
+        viewProduct();
+    }
+    _init();
+
+
+
+</script>
+@section SearchDataTable{
+    <form class="form-inline ml-3 " action="/admin/products/index" method="get">
+        <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="text" value="@ViewBag.Search" placeholder="Search" name="Search" id="Search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>}
+

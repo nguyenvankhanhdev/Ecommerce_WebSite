@@ -1,0 +1,130 @@
+﻿body {
+
+}
+.form-login{
+    margin-top:10px;
+    margin-bottom:30px;
+}
+.cart-category {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%) !important;
+}
+.flex{
+    justify-content:center;
+}
+.custom-menu {
+    display: flex;
+    flex-direction: row !important;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+/*===============================*/
+.modal-wrapper {
+    max-width: 700px;
+    width: 100%;
+}
+
+.table-product td {
+    width: 45%;
+}
+
+.a-modal {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0 10px !important;
+    margin-bottom: 12px;
+}
+
+.a-modal li {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 2px 0;
+        margin-bottom: 4px;
+        width: 50%;
+        color: #444b52;
+    }
+
+    .a-modal .dots {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #99a2aa;
+        margin: 3px 8px 3px 0;
+    }
+
+    .a-modal .st-list li div {
+        color: #495057;
+    }
+
+    .a-modal .st-table {
+        border-collapse: collapse;
+        width: calc(100% - 60px);
+        margin: 0 auto;
+    }
+
+        .a-modal .st-table td:first-child {
+            color: #99a2aa;
+            width: 200px;
+            padding: 8px 0;
+        }
+
+.st-table td {
+    color: #495057;
+    padding: 8px 0;
+    vertical-align: baseline;
+}
+
+.st-table {
+    border-collapse: collapse;
+    width: calc(100% - 60px);
+    margin: 0 auto;
+}
+
+.st-table-title {
+    padding: 4px 30px;
+    font-weight: 500;
+    background: #f8f9fa;
+    -webkit-box-shadow: inset 0 -1px 0 #edeeef;
+    box-shadow: inset 0 -1px 0 #edeeef;
+}
+
+.st-table td:first-child {
+    color: #99a2aa;
+    width: 200px;
+    padding: 8px 0;
+}
+
+.st-table td {
+    color: #495057;
+    padding: 8px 0;
+    vertical-align: baseline;
+}
+
+ .st-row li {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 2px 0;
+    margin-bottom: 4px;
+    width: 100%;
+    color: #99a2aa;
+}
+
+table {
+    border-spacing: 0;
+}
+
